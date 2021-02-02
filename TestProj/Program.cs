@@ -12,7 +12,19 @@ namespace TestProj
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, this is Pavel!");
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--window-size=1920,1080");
+            options.AddArguments("--start-maximized");
+            options.AddArguments("--disable-web-security");
+            options.AddArguments("--disable-javascript");
+            options.AddAdditionalCapability("useAutomationExtension", false);
+            options.AddArguments("--headless");
+
+            IWebDriver driver = new ChromeDriver(options);
+
+            driver.Navigate().GoToUrl("https://www.google.com/");
+
+            Console.WriteLine(driver.Title);
         }
     }
 }
