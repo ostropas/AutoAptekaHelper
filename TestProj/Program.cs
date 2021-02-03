@@ -10,24 +10,30 @@ namespace TestProj
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArguments("--window-size=1920,1080");
-            options.AddArguments("--start-maximized");
-            options.AddArguments("--disable-web-security");
-            options.AddArguments("--disable-javascript");
-	    options.AddArguments("--remote-debugging-port=4444");
-            options.AddAdditionalCapability("useAutomationExtension", false);
-            options.AddArguments("--headless");
+            var app = new Application("config.json");
+            while(true)
+            {
+                await app.Run();
+            }
 
-            System.Environment.SetEnvironmentVariable("webdriver.chrome.binary", "/usr/bin/chromium-browser");
+            //ChromeOptions options = new ChromeOptions();
+            //options.AddArguments("--window-size=1920,1080");
+            //options.AddArguments("--start-maximized");
+            //options.AddArguments("--disable-web-security");
+            //options.AddArguments("--disable-javascript");
+            //options.AddArguments("--remote-debugging-port=4444");
+            //options.AddAdditionalCapability("useAutomationExtension", false);
+            //options.AddArguments("--headless");
 
-            IWebDriver driver = new ChromeDriver("/usr/bin", options);
+            //System.Environment.SetEnvironmentVariable("webdriver.chrome.binary", "/usr/bin/chromium-browser");
 
-            driver.Navigate().GoToUrl("https://www.google.com/");
+            //IWebDriver driver = new ChromeDriver("/usr/bin", options);
 
-            Console.WriteLine(driver.Title);
+            //driver.Navigate().GoToUrl("https://www.google.com/");
+
+            //driver.Close();
         }
     }
 }
