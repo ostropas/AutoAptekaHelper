@@ -48,7 +48,7 @@ namespace TestProj
                 resFiles.AddRange(tmpRes);
             }
 
-            var directoryName = Path.Combine("Results", "Output", DateTime.UtcNow.ToUniversalTime().ToString());
+            var directoryName = Path.Combine("Results", "Output", DateTime.UtcNow.ToUniversalTime().ToString("yyyy_MM_dd_HH_mm_ss_fff"));
             directoryName = directoryName.Replace(':', '_');
 
             Directory.CreateDirectory(directoryName);
@@ -66,7 +66,7 @@ namespace TestProj
 
         private void WriteToTargetPath(IEnumerable<OutputData> values, string fileName)
         {
-            var fullFileName = $"{fileName}_{DateTime.Now.ToLocalTime()}.csv";
+            var fullFileName = $"{fileName}_{DateTime.Now.ToLocalTime().ToString("yyyyMMddHHmmssfff")}.csv";
             fileName = fullFileName.Replace(':', '_');
 
             using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.Unicode))
