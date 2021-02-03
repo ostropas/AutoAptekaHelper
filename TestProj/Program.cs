@@ -19,7 +19,8 @@ namespace TestProj
             options.AddArguments("--disable-javascript");
             options.AddAdditionalCapability("useAutomationExtension", false);
             options.AddArguments("--headless");
-            options.BinaryLocation = "/usr/bin/chromium-browser";
+
+            System.Environment.SetEnvironmentVariable("webdriver.chrome.binary", "/usr/bin/chromium-browser");
 
             IWebDriver driver = new ChromeDriver(options);
 
