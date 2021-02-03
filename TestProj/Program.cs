@@ -17,12 +17,13 @@ namespace TestProj
             options.AddArguments("--start-maximized");
             options.AddArguments("--disable-web-security");
             options.AddArguments("--disable-javascript");
+	    options.AddArguments("--remote-debugging-port=4444");
             options.AddAdditionalCapability("useAutomationExtension", false);
             options.AddArguments("--headless");
 
             System.Environment.SetEnvironmentVariable("webdriver.chrome.binary", "/usr/bin/chromium-browser");
 
-            IWebDriver driver = new ChromeDriver(options);
+            IWebDriver driver = new ChromeDriver("/usr/bin", options);
 
             driver.Navigate().GoToUrl("https://www.google.com/");
 
